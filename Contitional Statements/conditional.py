@@ -12,6 +12,10 @@
 #     print("The number is even")
 
 # if-else Statement
+# if condition:
+    # instructions
+# else:
+    # instructions
 
 # num = input("Enter a number: ")
 # num = int(num)
@@ -21,6 +25,16 @@
 #     print("The number is odd")
 
 # elif Statement
+# if condtion:
+#     # instructions
+# elif condition:
+#     # instructions
+# elif condition:
+#     # instructions
+# else:
+#     # instructions
+
+
 # if 10> 10:
 #     print("10 is greater than 10")
 # if 10 < 10:
