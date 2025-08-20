@@ -16,6 +16,12 @@ def add():
 x = add()
 # print(x)
 
+# def sub(a,b):
+#     return a-b
+
+# sub(10,20)
+# sub(100,20)
+
 def sub(a=0,b=0):
     print("a is", a)
     print("b is", b)

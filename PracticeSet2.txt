@@ -1,0 +1,7 @@
+1.Reverse a string without using slicing.
+2.Count vowels in a string.
+3.Check if a string is a palindrome.
+4.Write a function to calculate factorial of a number.
+5.Write a function to check if a number is prime.
+6.Write a function to count words in a sentence.
+7.Replace all spaces in a string with -.
