@@ -1,0 +1,11 @@
+1. Write a program to print all the odd numbers from 1 to n number using a for loop.
+2. Print the multiplication table of a given number using a loop
+3. Print a pyramid pattern like this using loops:
+
+*
+**
+***
+****
+*****
+
+4. Given a list of numbers, create a new list with only the even numbers.
