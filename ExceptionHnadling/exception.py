@@ -10,11 +10,26 @@
 # finally:
 #     print("Always executes")
 
+# try:
+#     a = int("Hello")
+# except Exception:
+#     print("Something went wrong")
+# except ValueError:
+#     print("Invalid input")
+# except TypeError:
+#     print("Invalid type")
+
+
+
 try:
-    a = int("Hello")
-except Exception:
-    print("Something went wrong")
-except ValueError:
-    print("Invalid input")
-except TypeError:
-    print("Invalid type")
+    x = int(input("Enter a number: "))
+    y = int(input("Enter another number: "))
+    try:
+        result = x/y
+        print("Division: ",result)
+    except ZeroDivisionError as x:
+        print(x)
+except ValueError as e:
+    print(e)
+except TypeError as t:
+    print(t)
