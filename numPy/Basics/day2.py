@@ -66,6 +66,6 @@ two = np.array([[4,2,3],[2,36,4],[9,5,7]])
 # print(one + two)
 
 sum = one.dot(two)
-# print(sum)
+print(sum)
 
 print(np.std(one))
