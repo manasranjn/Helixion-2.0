@@ -1,8 +1,8 @@
-# file = open('File Handling/example.txt', 'r')
-# content = file.read()
-# print(content)
+file = open('File Handling/example.txt', 'r')
+content = file.read()
+print(content)
 
-# file.close()
+file.close()
 
 with open('File Handling/example.txt', 'r') as file:
     content = file.readline()
@@ -10,7 +10,7 @@ with open('File Handling/example.txt', 'r') as file:
 
 # with open('File Handling/exam.txt', 'w') as files:
 #     files.write("Hello World")
-    
+
 # with open('File Handling/example.txt', 'a') as files:
 #     files.write("Hello World")
 
