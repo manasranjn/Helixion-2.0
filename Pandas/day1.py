@@ -23,6 +23,6 @@ import numpy as np
 dFrame4 = pd.read_csv("business-operations-survey-2022-business-finance.csv", encoding="cp1252")
 # dFrame5 = pd.read_excel("file_example.xls")
 dFrame6 = pd.read_json("titanic-parquet.json", lines=True)
-print(dFrame6.head())
+# print(dFrame6.head())
 
-# print(dFrame6)
+# print(dFrame4)
