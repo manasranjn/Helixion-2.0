@@ -3,7 +3,7 @@ import pandas as pd
 # dFrame1 = pd.read_csv("business-operations-survey-2022-business-finance.csv", encoding="cp1252")
 # dFrame2 = pd.read_excel("file_example.xls")
 dFrame3 = pd.read_json("titanic-parquet.json", lines=True)
-print(dFrame3.head())
+# print(dFrame3.head())
 # print(dFrame3.tail(10))
 # print(dFrame3.shape)
 # print(dFrame3.info())

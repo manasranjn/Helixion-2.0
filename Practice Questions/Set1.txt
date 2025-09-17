@@ -1,0 +1,8 @@
+1. Create a 1D NumPy array of numbers from 10 to 50.
+2. Create a 2D NumPy array (3x3) with values ranging from 1 to 9.
+3. Generate an array of 10 numbers between 0 and 1.
+4. Create an array of 100 evenly spaced values between 5 and 50.
+5. Reshape a 1D array of 12 elements into a 3x4 array.
+6. Multiply two matrices using NumPy.
+7. Stack two arrays vertically and horizontally.
+8. Create an array of zeros only.
