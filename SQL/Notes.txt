@@ -1,0 +1,111 @@
+Constraints:
+-Rule/condition which is applied while creating a table.
+-It is not mandatory(but highly recommended)
+-Used to restrict the data that are entering into table.
+-Here, constraints are applied in column level.
+Note:-
+-Null means empty space.
+-Inside the cell, if we see an empty space, it will be considered as null.
+Types of constraints:
+1)not null
+2)unique
+3)Primary key
+4)Foreign key
+5)check
+6)default
+
+1/-not null: Used to avoid null values.
+-While inserting the data into the column user must and should pass the values.(it wont take any null values)
+
+2/-unique: It avoids duplicate values.
+-User can not insert/store same values into that particular column.
+-Unique can take more than one null values on oracle 10g but not on MySQL.(MySQL DB allows only one value for unique column).
+		  
+3/-Primary Key: Combination of unique and not null.
+-For one table we can have only one primary key, more than one primary key is not allowed by the server.
+-Used for unique identification of each record.(***)
+-Primary Key is not mandatory but highly recommended.
+ex: rollno number(4) primary key
+
+4/-Foreign key: Used to build a relation from one table to another table.(to establish some parent-child relation)
+-In a table we can have more than one foreign key.
+-Foreign Key is also known as referential-integrity constraints.
+-Foreign key allows duplicates and null values.
+-Primary key of the parent table should be the foreign key in child table.
+ex: tid, hid are the foreign key
+				
+5/-Check:Used to restrict the data that is entering into the table-column.
+-It is like a rule given to the particular column, if the rule or given condition is satisfied it allows the data to be stored else it rejects.
+ex: phono number(10) check (length(phno)=10)
+
+6/-Default: Used to store the default value for a given column.
+ex: Branch varchar2(10) default "MECH"
+
+Create a copy of table.
+Syntax:
+Create table table-name as select statement;
+ex: create table emp1 as select * from emp;
+
+DML(Data Manipulation Language):
+-Used to manage and manipulate the data inside the database.
+-DML is not directly connecteed to database, so the changes are not permanent.
+-DML commands are not auto-commited.
+-To make the changes permanent to database we should use TCL.
+
+1)insert: Used to insert the values into the table.
+Syntax: 1(if you want store all the values into all the columns for particular row)
+insert into table-name values (value1, value2, value3.....);
+ex:insert into product1 values (1,'car',1200,12-sep-2022);
+
+syntax2:(if you want to store the values for particular column use syntax2)
+insert into table-name (col1, col2, col3.....) values (value1, value2, value3.....) ;
+ex: insert into product1 (pid,pname) values(1,bus);
+
+TCL:Used to control the transaction done by the DML statement.
+-TCL are applicable only for DML statement.
+
+commit: used to save the data permanently into the database.
+syntax: commit;
+
+DQL: Data Query Language
+-Used to retreive the data from the Database.
+-select : Used to retreive/select the data from the table/database and to display it.
+-The returned rows may be set of rows stored in a table called result table or result set.
+-To retreive the data we have three different ways:
+1)projection
+2)selection
+3)joins
+
+																	
+Projection: Used to retreive the data just by selecting the column is known as projection.
+syntax: select */distinct column-name expression/aliasing
+        from table-name;
+order of execution: 1)from
+					2)select
+note: * selects all the column, once the column is selcted by default values get selcted.
+-If user gives the table-name which is not present in the database, then user gets an error(table/view dosen't exist,)
+-If user gives the col-name which is not present in the table, then user gets an error as invalid-identifier.
+-Query: its a request sent to database to fetch the required data.
+
+Q1)WAQTD details of employee.
+ans- select * from emp;
+Q2)WAQTD details of department.
+ans- select * from dept;
+Q3)WAQTD salgrade details.
+ans- select * from salgrade;
+
+Distinct: Used to remove the duplicate in specified column or in table.
+-We can include more than one column in one distinct keyword/clause.
+-We cannot have more than one distinct in one select statement.
+-If the user has a requirement of using distinct, always the distinct should be the 1st argument after the select clause.
+
+Q4)WAQTD employee name and salary of all the employee.
+ans- select ename,sal from emp;
+Q5)WAQTD employee name, salary, mgr, comm and deptno of all employee.
+ans- select ename,sal,mgr,comm,deptno from emp;
+Q6)WAQTD unique jobs.
+ans- select distinct job from emp;
+Q7)WAQTD unique deptno.
+ans- select distinct deptno from emp;
+Q8)WAQTD unique job, deptno of employee.
+ans- select distinct job,deptno from emp;
