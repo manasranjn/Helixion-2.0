@@ -109,3 +109,71 @@ Q7)WAQTD unique deptno.
 ans- select distinct deptno from emp;
 Q8)WAQTD unique job, deptno of employee.
 ans- select distinct job,deptno from emp;
+
+Expression/aliasing:
+Expression: Combination of operand and operator.
+
+Aliasing: Used to rename the column-name.
+-Aliasing can be done in 3 ways.
+		1)using as keyword
+		2)using space( )
+		3)using double quote("")
+1)old-column-name as aliasing-name
+2)old-col-name aliasing-name
+2)old-column-name "aliasing-name" (if you want space inside single column use the 3rd way(""))
+
+Q9)WAQTD all the details of employee along with annualsal.
+ans- select emp.*,sal*12 as annualsal from emp;
+Q10)WAQTD all the details of employee along with their half term salary and anual salary.
+ans- select emp.*,sal*6 "HALF TERM SAL",sal*12 "ANUAL SAL" from emp;
+Q11)WAQTD empno as eid, sal as salary and deptno as dno.
+ans- select empno eid,sal as salary,deptno "DNO" from emp;
+														
+Selection: Used to retreive the data by selecting nth columns and rows is known as selection.
+syntax- select */distinct column-name expression/aliasing
+		from table-name
+		where <condition>;
+
+Order of execution: from
+					where
+					select
+
+Note: Where clause: used to filter the records inside the table.
+-Where clause executes row by row process.
+-we can write n number of conditon inside the where clause.
+-We cannot write more than one where clause in one select statement.
+-Where clause is implimented on rows.
+
+**- If the condition is not satisfied in any of the row, we get the output as no rows selected.(If the given condition are false)
+-In the selection, select is dependent on the where clause.(filtered rows)
+
+Q1)WAQTD details of MARTIN.
+ans- select * from emp where ename='MARTIN';
+o/p- (1)no of rows
+Q2)WAQTD details of employee who works as CLERK.
+ans- select * from emp where job='CLERK';
+o/p- (4)no of rows
+Q3)WAQTD details of employee who are earning 3000.
+ans- select * from emp where sal=3000;
+o/p- (2)no of rows
+Q4)WAQTD ename and deptno, if the employee works in deptno 30.
+ans- select ename,deptno from emp where deptno=30;
+o/p- (6)no of rows
+Q5)WAQTD ename and hiredate, if employee hired on '03-DEC-81'.
+ans- select ename, hiredate from emp where hiredate='03-DEC-81';
+o/p- (2)no of rows
+Q6)WAQTD employee name, salary and mgr, if employee reporting manager number is 7839.
+ans- select ename,sal,mgr from emp where mgr=7839;
+o/p- (3)no of rows 
+Q7)WAQTD details of employee who earns commision more than 400.
+ans- select * from emp where comm>400;
+o/p- (2)no of rows
+Q8)WAQTD details of employee, if employee number is 7902.
+ans- select * from emp where empno=7902;
+o/p- (1)no of rows
+Q9)WAQTD details of employee along with annualsal, if annualsal is 36000.
+ans- select emp.*,sal*12 as annualsal from emp where sal*12=36000;
+o/p- (2)no of rows
+Q10)WAQTD details of employee along with halfterm salary, if halfterm salary of employee is 40000.
+ans- select emp.*,sal*6 as halfterm from emp where sal*6=40000;
+o/p- (0)no of rows	
