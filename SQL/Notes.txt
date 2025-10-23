@@ -177,3 +177,143 @@ o/p- (2)no of rows
 Q10)WAQTD details of employee along with halfterm salary, if halfterm salary of employee is 40000.
 ans- select emp.*,sal*6 as halfterm from emp where sal*6=40000;
 o/p- (0)no of rows	
+
+
+OPERATORS:
+-Operator is uesd to perform operation between operands.
+Types of Operators:
+1)Arithmatic operator:(+,-,*,/)
+2)Relational/Comparision operator:(>,<,>=,<=,!=(<>))
+3)Special operator: is,is not,in,not in,like,not like,between,not between.
+
+1)Arithmatic operator:
+----------------------
+-Used to perform arithmatic operation between the operand.
+
+Q1)WAQTD employee name,sal and also display the salary after 10% hike.
+Q2)WAQTD employee name,sal and also display the salary after 20% deduction.
+Q3)WAQTD employee name,sal and also display the salary after 10% hike,also display their names if and only if the hiked salary is more than 20000.
+
+Relational operator: 
+--------------------
+-Used to compare the given operands.(<,>,<=,>=,!=(<>))
+Q1)WAQTD employee details, if employee earn more than 3000.
+Q2)WAQTD employee details, if employee earn less than 1000.
+Q3)WAQTD employee details, except who are working in deptno 10.
+Q4)WAQTD employee details, except who works as ANAYST.
+Q5)WAQTD employee details, except whoes mgr number is 7698.
+Q6)WAQTD employee details, if employee working as manager.
+Q7)WAQTD employee details, if employee earning 3000 or more than 3000.
+
+Logical Operator:
+----------------
+AND: 
+-If all the conditions are true, it returns true(select the records) else false(reject the records)
+
+Q1)WAQTD employee name, sal and deptno, if employee earning more than 2000 and works in deptno 10.
+Q2)WAQTD employee details, if employee number is 7902 and also works as SALESMAN.
+Q3)WAQTD employee details, if employee mgr number is 7839 and also comm is more than 300.
+Q4)WAQTD employee details, if employee hired on 03-DEC-81 and works in deptno 10.
+Q5)WAQTD employee details, if employee working as ANAYST in deptno 20.
+Q6)WAQTD employee details, if employee earn more than 1000 but less than 3000.
+
+OR: 
+-If any of the condition is true, it returns true.
+
+Q1)WAQTD employee details, if employee works in deptno 10 or 20 or 30 or 40.
+Q2)WAQTD employee name, sal and job works as SALESMAN or MANAGER.
+Q3)WAQTD employee name,sal,mgr,deptno and job, if employee name is SMITH or MILLER.
+Q4)WAQTD employee number,name and job, if employee num ber is 7566 or 7902.
+Q5)WAQTD employee name, if employee mgr is 7839 or 7639.
+
+Combination of (AND,OR)
+Q1)WAQTD employee name, sal, deptno and job works as ANAYST and also in deptno 10 or 20.	 
+Q2)WAQTD employee name, sal, deptno and job, if employee earning more than 3000 as clerk or salesman or manager.	 
+Q3)WAQTD employee name, sal and job works as analys or president on deptno 10 or 20 and also employee mgr number is 7839.	 
+Q4)WAQTD employee details, if employee earn less than 3000 but works in deptno 20 or 30 and also except who works as MANAGER or PRESIDENT.
+
+NOT:
+-Used to give the opposite values.
+Syntax: not column-name='VALUE';
+
+Q1)WAQTD employee details, except employee who works in deptno 20.
+Q2)WAQTD employee details, except employee who works as clerk also except salesman.
+Q3)WAQTD employee name and salary, except who are earning more than 3000.
+
+Combination(AND,OR,NOT):
+Q1)WAQTD employee name,sal and deptno, if employee earning more than 2000 but less than 4000 and working as clerk or salesman except whoes deptno is 20.
+Q2)WAQTD employee name,sal,job and deptno, if employee work in deptno 10 or 20, as clerk or manager except smith and allen.
+Q3)WAQTD employee details, if employee earn more than 3000 and also works as president in deptno 10 or 20, except martin and miller.
+
+Date :
+When we deal with dates we have to follow this-
+1)on =
+2)before <
+3)after >
+4)from >=
+
+Q1)WAQTD employee details, if employee hired on '23-JAN-82'.
+Q2)WAQTD employee details, if employee hired after '03-DEC-81'.
+Q3)WAQTD employee details, if employee hired after year 81.
+Q4)WAQTD employee details, if employee hired after year 83 and works in deptno 10 or 20.
+Q5)WAQTD employee details, if employee hired before year '10-JAN-81'.
+Q6)WAQTD employee details, if employee hired before year 85 and works as clerk or manager in deptno 10 or 20.
+Q7)WAQTD employee details, if employee hired after year 81 but hired before year 85.
+Q8)WAQTD employee details, if employee hired from 81 and except salesman.
+
+Special Operator:
+-----------------
+IS:
+-Used to evalute null values inside the specific column.
+syntax: column-name is null;
+
+Q1)WAQTD employee details, if employee dont have any reporting manager.
+Q2)WAQTD employee name,sal and comm, if employee not earning any commission.
+Q3)WAQTD employee details, who are not working in any dept.
+Q4)WAQTD employee details, except employee who work as clerk also except salesman and employee's dont earn any commission.
+
+IS NOT:
+-Used to evalute not null values.
+Syntax: column-name is not null;
+
+Q1)WAQTD employee details who are earning some salary in deptno 10.
+Q2)WAQTD employee details who have reporting manager.
+Q3)WAQTD employee details, who are earning some commission.
+
+IN:
+-Used to evalute multiple values in specified column.
+-It selects the data or values given in RHS.
+Syntax: column-name in (value1,value2...);
+
+Q1)WAQTD employee details, if employee works in dept 10 or 20.
+Q2)WAQTD employee name and sal, if employee name is SMITH or ALLEN or MARTIN.
+Q3)WAQTD employee details, if employee earning more than 2000 but less than 5000, as analyst or manager in deptno 20 or 30 and also hired after year 81.
+Q4)WAQTD employee name and deptno, if employee is working in dept 10 or 20 or 30 or 40 or 50.
+
+NOT IN: Used to evalute multiple values in a specific column.
+-It rejects the values given in RHS and selects all the other values in specified column.
+-In LHS pass 1 argument, RHS we can pass one or more values.
+Syntax: column-name not in (value1,value2.....);
+
+Q1)WAQTD employee details, except who works in deptno 10 and 20.
+Q2)WAQTD employee details, except clerk,manager,analyst and salesman.
+Q3)WAQTD employee name,sal,deptno and job,except clerk and salesman, also except who works in deptno 10 and 30.
+Q4)WAQTD employee details, who are not earning any commission but works in some department as clerk or salesman, except employee's who works in deptno 20 and 30.
+
+BETWEEN:
+-Used for range purpose.
+Syntax: column-name between value1 and value2;
+
+value1 and value2 are given ranges.
+(value1 is lower range, value2 is higher range)
+
+Q1)WAQTD employee name nad sal, if employee earning 1000 to 3000.
+Q2)WAQTD employee name and hiredate, if employee hiredate from year 81 to year 85.
+Q3)WAQTD employee name and  hiredate, if employee hired from year 80 to year 81 or from year 85 to year 87.
+
+NOT BETWEEN:
+-Opposite to between operator.
+Syntax: column-name not between value1 and value2;
+
+Q1)WAQTD employee name and sal, except who are earning from 1000 to 3000.
+Q2)WAQTD employee name and hiredate, except who are hired from year 81 to year 85.
