@@ -186,24 +186,44 @@ Types of Operators:
 2)Relational/Comparision operator:(>,<,>=,<=,!=(<>))
 3)Special operator: is,is not,in,not in,like,not like,between,not between.
 
-1)Arithmatic operator:
+1)Arithmatic operator: 
 ----------------------
 -Used to perform arithmatic operation between the operand.
 
 Q1)WAQTD employee name,sal and also display the salary after 10% hike.
+ans- select ename,sal,sal+sal*10/100 as hike from emp;
+o/p- (14)no rows selected
 Q2)WAQTD employee name,sal and also display the salary after 20% deduction.
+ans- select ename,sal,sal-sal*20/100 as deduction from emp;
+o/p- (14)no rows selcted
 Q3)WAQTD employee name,sal and also display the salary after 10% hike,also display their names if and only if the hiked salary is more than 20000.
+ans- select ename,sal,sal+sal*10/100 as hike from emp where sal+sal*10/100>20000;
+o/p- no rows selected
 
 Relational operator: 
 --------------------
 -Used to compare the given operands.(<,>,<=,>=,!=(<>))
 Q1)WAQTD employee details, if employee earn more than 3000.
+ans- select * from emp 
+	 where sal>3000;
 Q2)WAQTD employee details, if employee earn less than 1000.
+ans- select * from emp 
+	 where sal<1000;
 Q3)WAQTD employee details, except who are working in deptno 10.
+ans- select * from emp 
+	 where deptno != 10;
 Q4)WAQTD employee details, except who works as ANAYST.
+ans- select * from emp 
+	 where job != 'ANAYST';
 Q5)WAQTD employee details, except whoes mgr number is 7698.
+ans- select * from emp 
+	 where mgr !=7698;
 Q6)WAQTD employee details, if employee working as manager.
+ans- select * from emp 
+	 where job = 'MANAGER';
 Q7)WAQTD employee details, if employee earning 3000 or more than 3000.
+ans- select * from emp 
+	 where sal>= 3000;
 
 Logical Operator:
 ----------------
@@ -211,39 +231,92 @@ AND:
 -If all the conditions are true, it returns true(select the records) else false(reject the records)
 
 Q1)WAQTD employee name, sal and deptno, if employee earning more than 2000 and works in deptno 10.
+ans- select ename,sal,deptno 
+	 from emp 
+	 where sal>2000 and deptno=10;
 Q2)WAQTD employee details, if employee number is 7902 and also works as SALESMAN.
+ans- select * from emp 
+	 where empno=7902 and  job = 'SALESMAN';
 Q3)WAQTD employee details, if employee mgr number is 7839 and also comm is more than 300.
+ans- select * from emp 
+	 where mgr = 7839 and comm>300;
 Q4)WAQTD employee details, if employee hired on 03-DEC-81 and works in deptno 10.
+ans- select * from emp 
+	 where hiredate='03-DEC-81' and deptno=10;
 Q5)WAQTD employee details, if employee working as ANAYST in deptno 20.
+ans- select * from emp 
+	 where job='ANAYST' and deptno=20;
 Q6)WAQTD employee details, if employee earn more than 1000 but less than 3000.
+ans- select * from emp 
+	 where sal>1000 and sal<3000;
 
 OR: 
 -If any of the condition is true, it returns true.
 
 Q1)WAQTD employee details, if employee works in deptno 10 or 20 or 30 or 40.
+ans- select * from emp where deptno=10 or deptno=20 or deptno=30 or deptno=40;
 Q2)WAQTD employee name, sal and job works as SALESMAN or MANAGER.
+ans- select ename,sal,job from emp where job='SALESMAN' or job='MANAGER';
 Q3)WAQTD employee name,sal,mgr,deptno and job, if employee name is SMITH or MILLER.
+ans- select ename,sal,mgr,deptno,job from emp where ename='SMITH' or ename='MILLER';
 Q4)WAQTD employee number,name and job, if employee num ber is 7566 or 7902.
+ans- select empno,ename,job from emp where empno=7566 or empno=7902;
 Q5)WAQTD employee name, if employee mgr is 7839 or 7639.
+ans- select ename from emp where mgr=7839 or mgr=7639;
 
 Combination of (AND,OR)
-Q1)WAQTD employee name, sal, deptno and job works as ANAYST and also in deptno 10 or 20.	 
-Q2)WAQTD employee name, sal, deptno and job, if employee earning more than 3000 as clerk or salesman or manager.	 
-Q3)WAQTD employee name, sal and job works as analys or president on deptno 10 or 20 and also employee mgr number is 7839.	 
+Q1)WAQTD employee name, sal, deptno and job works as ANAYST and also in deptno 10 or 20.
+ans- select ename,sal,deptno,job 
+	 from emp 
+	 where job='ANALYST' and (deptno=10 or deptno=20);
+	 
+Q2)WAQTD employee name, sal, deptno and job, if employee earning more than 3000 as clerk or salesman or manager.
+ans- select ename,sal,deptno,job 
+	 from emp 
+	 where sal>3000 and (job='CLERK' or job='SALESMAN' or job='MANAGER');
+	 
+Q3)WAQTD employee name, sal and job works as analys or president on deptno 10 or 20 and also employee mgr number is 7839.
+ans- select ename,sal,job
+	 from emp 
+	 where (job='ANAYST' or job='PRESIDENT') and (deptno=10 or deptno=20) and mgr=7839;
+	 
 Q4)WAQTD employee details, if employee earn less than 3000 but works in deptno 20 or 30 and also except who works as MANAGER or PRESIDENT.
+ans- select * from emp 
+	 where sal<3000 and (deptno=20 or deptno=30 or deptno=30) and (job!='MANAGER' and job!='PRESIDENT');
 
 NOT:
 -Used to give the opposite values.
 Syntax: not column-name='VALUE';
 
 Q1)WAQTD employee details, except employee who works in deptno 20.
+ans- select * from emp 
+	 where not deptno = 20;
+o/p- 9 rows
 Q2)WAQTD employee details, except employee who works as clerk also except salesman.
+ans- select * from emp 
+	 where not job = 'CLERK' and not job= 'SALESMAN';
+o/p- 6 rows
 Q3)WAQTD employee name and salary, except who are earning more than 3000.
+ans- select ename,sal 
+	 from emp 
+	 where not sal>3000;
+o/p- 13 row
 
 Combination(AND,OR,NOT):
 Q1)WAQTD employee name,sal and deptno, if employee earning more than 2000 but less than 4000 and working as clerk or salesman except whoes deptno is 20.
+ans- select ename,sal,deptno 
+	from emp 
+	where sal>2000 and sal<4000 and (job='CLERK' or job='SALESMAN') and not deptno=20;
+o/p- 0 rows
 Q2)WAQTD employee name,sal,job and deptno, if employee work in deptno 10 or 20, as clerk or manager except smith and allen.
+ans- select ename,sal,job,deptno
+	 from emp
+	 where (deptno=10 or deptno=20) and (job='CLERK' or job='MANAGER') and not(ename='SMITH' or ename='ALLEN');
+o/p- 4 rows
 Q3)WAQTD employee details, if employee earn more than 3000 and also works as president in deptno 10 or 20, except martin and miller.
+ans- select * from emp
+	 where sal>3000 and job='PRESIDENT' and (deptno=10 or deptno=20) and not(ename='MARTIN' or ename='MILLER');
+o/p- 1 rows
 
 Date :
 When we deal with dates we have to follow this-
@@ -253,13 +326,37 @@ When we deal with dates we have to follow this-
 4)from >=
 
 Q1)WAQTD employee details, if employee hired on '23-JAN-82'.
+ans- select * from emp
+	 where hiredate='23-JAN-82';
+o/p- 1 row
 Q2)WAQTD employee details, if employee hired after '03-DEC-81'.
+ans- select * from emp
+	 where hiredate>'03-DEC-81';
+o/p- 3 rows
 Q3)WAQTD employee details, if employee hired after year 81.
+ans- select * from emp
+	 where hiredate > '31-DEC-81';
+o/p- 3 rows
 Q4)WAQTD employee details, if employee hired after year 83 and works in deptno 10 or 20.
+ans- select * from emp
+	 where hiredate>'31-DEC-83' and (deptno=10 or deptno=20);
+o/p- 2 rows
 Q5)WAQTD employee details, if employee hired before year '10-JAN-81'.
+ans- select * from emp
+	 where hiredate <'10-JAN-81';
+o/p- 1 row
 Q6)WAQTD employee details, if employee hired before year 85 and works as clerk or manager in deptno 10 or 20.
+ans- select * from emp
+	 where hiredate<'01-JAN-85' and (job='CLERK' or job='MANAGER') and (deptno=10 or deptno=20);
+o/p- 4 rows
 Q7)WAQTD employee details, if employee hired after year 81 but hired before year 85.
+ans- select * from emp
+	 where hiredate>'31-DEC-81' and hiredate<'01-JAN-85';
+o/p- 1 row
 Q8)WAQTD employee details, if employee hired from 81 and except salesman.
+ans- select * from emp
+	 where hiredate>='01-JAN-81' and not job='SALESMAN';
+o/p- 9 rows
 
 Special Operator:
 -----------------
@@ -268,17 +365,40 @@ IS:
 syntax: column-name is null;
 
 Q1)WAQTD employee details, if employee dont have any reporting manager.
+ans- select * from emp
+	 where mgr is null;
+o/p- 1 row
 Q2)WAQTD employee name,sal and comm, if employee not earning any commission.
+ans- select ename,sal,comm 
+	 from emp
+	 where comm is null;
+o/p- 10 rows
 Q3)WAQTD employee details, who are not working in any dept.
+ans- select * from emp
+	 where deptno is null;
+o/p- 0 rows
 Q4)WAQTD employee details, except employee who work as clerk also except salesman and employee's dont earn any commission.
+ans- select * from emp
+	 where not (job='CLERK' or job='SALESMAN') and
+	 comm is null;
+o/p- 6 rows
 
 IS NOT:
 -Used to evalute not null values.
 Syntax: column-name is not null;
 
 Q1)WAQTD employee details who are earning some salary in deptno 10.
+ans- selcted * from emp 
+	 where sal is not null and deptno = 10;
+o/p- 3 rows
 Q2)WAQTD employee details who have reporting manager.
+ans- select * from emp 
+	 where mgr is not null;
+o/p- 13 rows
 Q3)WAQTD employee details, who are earning some commission.
+ans- select * from emp
+	 where comm is not null;
+o/p- 4 rows
 
 IN:
 -Used to evalute multiple values in specified column.
@@ -286,9 +406,21 @@ IN:
 Syntax: column-name in (value1,value2...);
 
 Q1)WAQTD employee details, if employee works in dept 10 or 20.
+ans- select * from emp
+	 where deptno in(10,20);
+o/p- 8 rows
 Q2)WAQTD employee name and sal, if employee name is SMITH or ALLEN or MARTIN.
+ans- select ename,sal from emp
+	 where ename in ('SMITH','ALLEN','MARTIN');
+o/p- 3 rows
 Q3)WAQTD employee details, if employee earning more than 2000 but less than 5000, as analyst or manager in deptno 20 or 30 and also hired after year 81.
+ans- select * from emp
+	 where sal>2000 and sal<5000 and job in ('ANAYST','MANAGER') and deptno in (20,30) and hiredate>'31-DEC-81';
+o/p- no rows selected / 1
 Q4)WAQTD employee name and deptno, if employee is working in dept 10 or 20 or 30 or 40 or 50.
+ans- select ename,deptno from emp 
+	 where deptno in(10,20,30,40,50);
+o/p- 14 rows 
 
 NOT IN: Used to evalute multiple values in a specific column.
 -It rejects the values given in RHS and selects all the other values in specified column.
@@ -296,9 +428,21 @@ NOT IN: Used to evalute multiple values in a specific column.
 Syntax: column-name not in (value1,value2.....);
 
 Q1)WAQTD employee details, except who works in deptno 10 and 20.
+ans- selcted * from emp
+	 where deptno not in(10,20);
+o/p- 6 rows
 Q2)WAQTD employee details, except clerk,manager,analyst and salesman.
+ans- select * from emp
+	 where job not in('CLERK','MANAGER','ANAYST','SALESMAN');
+o/p- 3 rows / 1
 Q3)WAQTD employee name,sal,deptno and job,except clerk and salesman, also except who works in deptno 10 and 30.
+ans- select ename,sal,deptno,job from emp
+	 where job not in('CLERK','SALESMAN') and deptno is not null and deptno not in (10,30);
+o/p- 3 rows
 Q4)WAQTD employee details, who are not earning any commission but works in some department as clerk or salesman, except employee's who works in deptno 20 and 30.
+ans- select * from emp 
+	 where comm is null and job in('CLERK','SALESMAN')and deptno not in(10,20);
+o/p- 1 row
 
 BETWEEN:
 -Used for range purpose.
@@ -308,12 +452,228 @@ value1 and value2 are given ranges.
 (value1 is lower range, value2 is higher range)
 
 Q1)WAQTD employee name nad sal, if employee earning 1000 to 3000.
+ans- select ename,sal from emp 
+	 where sal between 1000 and 3000;
+o/p- 11 rows
 Q2)WAQTD employee name and hiredate, if employee hiredate from year 81 to year 85.
+ans- select ename,hiredate from emp 
+	 where hiredate between '01-JAN-81' and '31-DEC-85' ;
+o/p- 11 rows
 Q3)WAQTD employee name and  hiredate, if employee hired from year 80 to year 81 or from year 85 to year 87.
+ans- select ename,hiredate from emp 
+	 where (hiredate between '01-JAN-80' and '31-DEC-81') or (hiredate between '01-JAN-85' and '31-DEC-87');
+o/p- 13 rows
 
 NOT BETWEEN:
 -Opposite to between operator.
 Syntax: column-name not between value1 and value2;
 
 Q1)WAQTD employee name and sal, except who are earning from 1000 to 3000.
+ans- select ename,sal from emp 
+	 where sal not between 1000 and 3000;
+o/p- 3 rows
 Q2)WAQTD employee name and hiredate, except who are hired from year 81 to year 85.
+ans- select ename,hiredate from emp 
+	 where hiredate not between '01-JAN-81' and '31-DEC-85' ;
+o/p- 3 rows
+
+
+LIKE:
+-Used for pattern matching.
+There are 2 wildcards:
+1)_ :Which takes 1 character.
+2)% :Which may take zero, 1 or more character.
+
+Syntax: where column-name like 'Pattern';
+
+Q1)WAQTD employee name, if employee name starts with character 'A'.
+o/p- 2 rows
+Q2)WAQTD employee name, if employee name starts with character 'S'.
+o/p- 2 rows
+Q3)WAQTD employee name, if employee name starts with character 'A' or 'M'.
+o/p- 4 rows
+Q4)WAQTD employee name, if employee name starts with character 'A' but end with 'M'.
+o/p- no rows selected
+Q5)WAQTD employee name, if employee name contains at least 1 'A'.
+o/p- 7 rows selected
+Q6)WAQTD employee name, if employee name contains at least 2 'A'.
+o/p- 1 row
+Q7)WAQTD employee name and sal, if employee name contains exactly 4 characters.
+o/p- 3 rows
+Q8)WAQTD employee name and sal, if employee name last 2nd character is 'E'and their salary ends with 0.
+o/p- 4 rows 
+Q9)WAQTD employee name, if employee name contains two consecutive L.
+o/p- 2 rows
+Q10)WAQTD employee name, if employee name starting 3rd character is 'M' and works in dept 10 or 20.
+o/p- no rows selected
+Q11)WAQTD employee name and hiredate, if employee hired in FEB.
+o/p- 2 rows
+Q12)WAQTD employee name and hiredate, if employee hired in year 81.
+o/p- 10 rows selected
+Q13)WAQTD employee name and job, if employee name starts with 'A' and their job starts with 'S'.
+o/p- 1 row
+Q14)WAQTD employee details, if employee name starts with vowels.
+o/p- 2 rows 
+Q15)WAQTD employee details, if employee name ends with vowels.
+o/p- 1 row
+Q16)WAQTD employee name, if employee name contains @.
+ans- select * from emp 
+	 where ename like '%@%';
+o/p- no rows selected
+
+NOTE:
+If we want to find the _ or % in a given names, we have to make use of escape.
+ex: select ename from emp
+	where ename like '%@_%' escape '@';
+
+NOT LIKE:
+-It is just opposite to like operator.
+-Instead of selecting the pattern, it is going to reject the given pattern.
+Syntax: column-name not like 'pattern';
+
+Q1)WAQTD employee name, except employees whoes name starting with 'A'.
+ans- select ename from emp
+	 where ename not like 'A%';
+o/p- 12 rows selected
+Q2)WAQTD employee name, except employees whoes name ending with 'R'.
+o/p- 12 rows selected
+Q3)WAQTD employee name, except employees whoes name starting with 'A' also except employees whoes name starting with 'S'.
+o/p- 10 rows selected
+Q4)WAQTD employee name, except employees whoes name contains at least 1 'A'.
+o/p- 7 rows selected
+Q5)WAQTD employee name, except employees whoes name starting with 'A' and ending with 'S'.
+o/p- 13 rows selected
+Q6)WAQTD employee name and hiredate, except employees who hired in DEC.
+o/p- 11 rows selected
+Q7)WAQTD employee name and salary, except whoes salary ending with 0.
+o/p- 1 row
+Q8)WAQTD employee name, if employee name starting with consonants.
+o/p- 12 rows selected
+Q9)WAQTD employee name, if employee name ending with consonants.
+o/p- 13 rows selected
+Q10)WAQTD employee name, except employees whoes name starting with consonants also except whoes name ending with vowels.
+o/p- 2 rows
+
+-:Functions:-
+----------	-------------
+-Set of instruction which is used to perform some specific task.
+
+Function contains:
+1)Function name
+2)Number of arguments
+3)Return type
+
+There are two types of function:
+1)SRF(Single row function)
+2)MRF(Multi roe function)
+
+1)SRF():
+-It takes n no. of inputs and executes and produce n nu. of output.
+-Single row function can be used in 
+	select
+	where
+	order by
+
+Types of SRF():
+1)Character Function
+2)Number Function
+3)Date Function
+4)Special Function
+
+Character Function:
+-It takes character(alphanumeric) input and produce the output either alphabets or numbers.
+
+upper():- Used to convert the data into uppercase.
+Syntax: upper(arg1)
+
+Q1)WAQTD to convert all the employee names into upper case.
+ans- select upper(ename) from emp;
+Q2)WAQTD to convert all the employee name s and job into upper case.
+Q3)WAQTD to convert jspider into upper case.
+
+NOTE:
+-Dual table is dummy table present iside the database, with 1 row 1 column, by default it contains value X with varchar2(1) type.
+
+lower():- Used to convert the data into lowercase.
+Syntax: lower(arg1)
+
+Q1)WAQTD to convert all the employee names into lowercase.
+ans- select lower(ename) from emp;
+Q2)WAQTD to convert jspider into lowercase.
+Q3)WAQTD details of employee SMITH.(with irrespective of case)
+
+initcap():- Used to convert all the words 1st character as uppercase.
+Syntax: initcap(arg1)
+ex- select initcap('you are beautiful') from dual;
+o/p- You Are Beautiful
+
+Character Manipulation:-
+length():- It is used to display the number of characters present in the given data.
+Syntax: length(arg1)
+
+Q1)WAQTD employee name and also no. of characters present in their names.
+ans- select ename, length(ename) from emp;
+Q2)WAQTD employee details if the employee name exactly contains 5 characters in their name.
+o/p- 8 rows selected
+Q3)WAQTD employee name and no of characters present in their name for allen and ward.
+Q4)WAQTD employee names whoes length is 4 or 5.
+o/p- 11 rows selected
+
+reverse():- Used to reverse the given data.
+Syntax: reverse(arg1)
+
+Q1)WAQTD to reverse all the employee name.
+ans- select reverse(ename) from emp; 
+Q2)WAQTD to reverse WebBocket.
+
+Q3)WAQTD the reverse of your name.
+
+
+concat():- Used to merger the given string or data.
+Syntax: concat(arg1,arg2)
+-concat operator (||) can be used in select clause.
+
+Q1)WAQTD 'hi' before all the employee names.
+ans- select concat('Hi',ename) from emp;
+Q2)WAQTD 'hi' before all the employee names along with display 'your designation is', particular designation must displayed.
+Q3)WAQTD 'hi' for all the employee name and also display 'your salary is hiked upto 10%' with 10% salary must be displayed.
+
+trim():-Used to trim or remove the particular character from the given string.
+Syntax: trim(leading/trailing/both 'char' from string)
+
+ex:- select trim(leading 'P' from 'PPT') from dual;
+o/p- T
+ex2:- select trim(trailing 'M' from 'ADAM') from emp;
+o/p- ADA
+ex3:- select trim(both 'P' from 'POPP') from dual;
+o/p- O
+
+replace():- Used to replace the given string.
+Syntax:- replace(arg1,arg2,arg3)
+arg1- main string
+arg2- search string
+arg3- replace string
+NOTE: If you dont pass the 3rd argumrnt, 3nd argument(search string) will removed from the main string(1st arg).
+
+Q1)WAQTD employee name also display if the employee name contains character 'R' replace with it 'D'.
+Q2)WAQTD the no of character 'A' present in the employee name.
+Q3)WAQTD employee name and job also replace the character 'K' from job to character 'MMM'.
+Q4)WAQTD employee name also remove the character 'A' from all the employee names in deptno 10 or 20.
+o/p- 8 rows selected
+Q5)WAQTD no of 'M' present in your name.
+Q6)WAQTD employee name and job, also replace the character 'D' to 'Z' from all job only for thoes whoe's mgr is 7788 or 7839.
+
+translate(): It used to replace the given string, but it replace character by character.
+Syntax: translate(arg1,arg2,arg3)
+arg1:main string
+arg2:search string
+arg3:replace string
+
+ex: select translate('SMITHA','S','Z') from dual; -> ZMITHA
+	select translate('SMITHA','S',' ') from dual; ->  MITHA
+	select translate('SMITHA','SA','Z') from dual; -> ZMITH
+	select translate('SMITHA','SA','YZ') from dual; -> YMITHZ
+	select translate('SMITHA','SMT','HK') from dual; -> HKIHA
+
+Q1)WAQTD only consonants from employee names.
+Q2)WAQTD only vowel from the employee names and all  pther character filled with space.
