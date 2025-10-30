@@ -677,3 +677,238 @@ ex: select translate('SMITHA','S','Z') from dual; -> ZMITHA
 
 Q1)WAQTD only consonants from employee names.
 Q2)WAQTD only vowel from the employee names and all  pther character filled with space.
+
+
+instr:- Dsiplay the position of the character, it returns the index values of particular occurence.
+Syntax: instr(main-string, search-string, starting-index, no. of occurance)
+
+Q1)WAQTD ename if the employee name contains at least 1 'A'.
+Q2)WAQTD ename if the employee name contains at least 3 'S' in their their names.
+Q3) input:- ravi output:-2
+o/p- select instr('ravi','a',1,1) from dual;
+Q4) input:- vanivilas output:-6
+ans- select instr('vanivilas','i',1,2) from dual;
+Q5)WAQTD ename,job and hiredate if the job contains at least 2 'K'.
+Q6)WAQTD employee name, if employee
+
+
+1)add_months:- It will add the months to the given date.
+Syntax: add_months(arg1,arg2)
+arg1- date
+arg2- how many months to be added(in number)
+
+Q1)WAQTD ename and hiredate along with add 12 months to the hiredate and display it.
+ans- select ename, hiredate,add_months(hiredate,12) from emp;
+
+Q2)WAQTD the current date after 5 years.
+Q3)WAQTD ename,hiredate, and job display the hiredate after two years.
+Q4)WAQTD ename,hiredate also display the hiredate before 3 years.
+
+months_between:- Used to display the difference between the given dates.
+Syntax: months_between(arg1.arg2)
+arg1,arg2 :- date
+
+Q1)WAQTD ename,hiredate and experience of the employee for all the employee.
+ans- select ename,hiredate,round(months_between(current_date,hiredate)/12) as exp from emp;
+
+Q2)WAQTD ename,hiredate and experience of the employee if the experience of the employee is more than 40 years.
+Q3)WAQTD student name and age of the student.
+Q4)WAQTD student name and age if the age is more than 25.
+Q5)Find the difference from current date to '01-JAN-80'(yrs).
+last_day:- It display the last date of the given date.
+Syntax: last_day(arg1)
+
+Q1)WAQT find the last date from the current_date date.
+ans- select last_day (current_date) from dual;
+
+Q2)WAQT find the last day of the next month.
+Q3)WAQT find the first day of the next month.
+Q4)WAQT find first day and last day of previous month.
+Q5)WAQT find the last day of 23-FEB-2004.
+
+Extract :-
+Used to extract the month or year or date from the given date.
+Syntax: extract(day/month/year from current_date/sysdate/hiredate/...)
+
+Q1)WAQT extract the month where SMITH is hired.
+ans- select extract (month from hiredate) from emp 
+	 where ename='SMITH' ;
+
+Q2)WAQT extract the year where ALLEN is hired.
+Q3)WAQT extract the date where KING and SCOTT is hired, if they work in deptno 10/20/30 and if their length of the name is 4.
+Q4)WAQT extract the month for all the employee.
+Q5)WAQTD ename,hiredate and extract the date where employees are hired.
+Q6)WAQT extract year from '12-JAN-2003'.
+SPECIAL Function:-
+------------------
+General SRF:- nvl,nvl2(NULL VALUE LOGIC)
+
+1)nvl():- Used to replce a value of null.
+-Used to overcome the drawback null values.
+Syntax: nvl(arg1,arg2)
+-If the arg1 is null it substitutes the 2nd arg else it substitutes the same 1st argument.
+
+Q1)WAQTD ename, sal,comm and total salary for all the employee.
+ans- select ename,sal,comm,sal+nvl(comm,0) from emp; 
+
+2)nvl2():-Used to overcome the drawback null values.
+Syntax:nvl2(arg1,arg2,arg3)
+-If the arg1 is null it substitutes 3rd argument.
+-If the arg1 is not null it substitutes 2nd argument.
+
+Q1)WAQTD ename,comm also if the employee earn comm display as 'earning comm' else display 'no commision'.
+ans- select ename,comm,nvl2(comm,'earn comm','no comm') from emp;
+
+Convertion srf:- to_char
+1)to_char():- Used to convert the date type into date string.
+Syntax: to_char(arg1,arg2)
+ arg1:- date
+ arg2:- 'date format'
+ 
+Date format:-
+d:- 1,2,3,4,5,6,7(sunday-1,monday-2,.....)
+dy:- sun,mon,tue,wed,....
+dd:- date (4-apr-23 -->4)
+day:- monday,tuesday,wednesday,.....
+mm:- month in number (jan-1, feb-2, .....)
+mon:- 1st three character of the month (JAN,FEB,MAR.....) 
+month:- january,frbruary,march.....
+y:- (2023)-->3
+yy:- (2023)-->23
+yyy:- (2023)-->023
+yyyy:- 2023
+year:- twenty twenty three
+HH12:- 12 hour format
+HH24:- 24 hour format
+MI:- minutes
+SS:- seconds
+
+Q1)WAQTD today's day.
+ans- select to_char(current_date,'DAY') from dual;
+
+Q2)WAQTD employee name and hiredate, also extract day from all the employees hiredate.
+select ename, hiredate, to_char(hiredate, 'day') as day from emp;
+
+Q3)WAQTD employee name and hiredate, if employee hired on THURSDAY.
+select ename, hiredate from emp
+where to_char(hiredate, 'FMDAY') = 'THURSDAY';
+
+Q4)WAQTD employee name and hiredate if employee hired on december.
+select ename, hiredate from emp
+where to_char(hiredate, 'fmmonth') = 'december';
+
+Q5)WAQTD employee name and hiredate , if employee hired on 20th.
+Q6)WAQTD employee name and hiredate, if the reverse of month 4th character is vowel.
+Q7)WAQTD employee name and hiredate, if the month of the 3rd character is same as their day 3rd character.
+Q8)WAQTD employee name and hiredate, if employee hired in year nineteen eight.
+NOTE:- FILL MODE used to fill space to complete the length.
+
+to_date: Used to convert date string to date type.
+to_date(arg1,arg2) -->(datestring,format of date string)
+
+ex:- select to_date('12:SEP:2023','DD:MON:YYYY') from dual;
+
+Multi Row Functions:- (MRF)
+max():-
+1) WAQTD maximum salary if emp is working in dept 10 or 20 also working as a SALESMAN.
+select max(sal) from emp
+where deptno in (20, 30) and job = 'SALESMAN';
+
+2) WAQTD max sal if emp earning some commision also working as SALESMAN.
+select max(sal) from emp
+where comm > 0 and job = 'SALESMAN';
+
+3) WAQTD max sal if emp earns commision more than 1000 and hired on thursday
+select max(sal) from emp
+where comm > 1000 and to_char(hiredate, 'fmday') = 'THURSDAY';
+
+min():-It is used to display the minimum values given to specified column.
+Syntax: min(arg1)
+
+Q1)WAQTD minimum salary given to dept 10.
+ans- select min(sal) from emp where deptno=10;
+
+Q2)WAQTD minimum salary given to SALESMAN if they work in deptno 30 or 20.
+select min(sal) from emp
+where job ='SALESMAN' and deptno in (20, 30);
+
+Q3)WAQTD minimum salary if the employee name starts with vowels and work in deptno 10 or 20.
+Q4)WAQTD minimum salary given to clerk who works in deptno 10 or 30.
+Q5)WAQTD minimum salary who works in deptno 30 as manager.
+
+
+sum():- It is used to obtain the total value for specified column.
+Syntax: sum(arg1)
+
+Q1)WAQTD total salary given to all employee.
+ans- select sum(sal) from emp;
+
+Q2)WAQTD total salary given to employee who works as CLERK.
+select sum(sal) from emp
+where job = 'CLERK';
+
+Q3)WAQTD total salary given to employee who works in deptno 20 or 30.
+
+Q4)WAQTD total salary given to employees whoes name ends with vowels and also work as CLERK or manager in deptno 10 or 20 or 30.
+select sum(sal) from emp
+where substr(ename, -1,1) in ('A','E','I','O','U') and job in ('CLERK', 'MANAGER') and deptno in (10,20,30);
+
+Q5)WAQTD total salary given to dept 20.
+
+avg:- Used to obtain the average value of specified column.
+Syntax: avg(arg1)
+
+Q1)WAQTD average salary given to all employee.
+ans- select avg(sal) from emp;
+
+Q2)WAQTD average salary given to employee thoes who works in deptno 20.
+Q3)WAQTD average salary given to manager.
+Q4)WAQTD average salary given to clerk in deptno 10.
+
+count():- It is used to obtain no of values present in specifed column.
+Syntax: count(arg1/*)
+Note:- count() is only mrf() which takes * as an argument.
+
+Q1)WAQTD no. of employees present in the table.
+ans- select count(*) from emp;
+
+Q2)WAQTD no. of employees working as clerk.
+Q3)WAQTD no. of employees working in deptno 10.
+Q4)WAQTD no. of employees name starting with consonants.
+Q5)WAQTD no. of employees hired in 03-DEC-81.
+Q6)WAQTD no. of employees working as manager in deptno 10 or 30.
+Q7)WAQTD no. of unique salary present in the table.
+Q8)Calculate the diffrence of number of jobs with number of distinct job.
+Q9)WAQTD maximum salary, minimum salary, total salary,average salary of salesman along with number of employee working as salesman.
+Q10)WAQTD number of employees earning commision as analyst.
+
+Group By Clause:-
+-Used to group the records.
+-After group by, any clause that executes, it executes group by group.
+-The column-name or expresion which is written in group by clause can be included in select clause with group function(mrf()).
+-It takes group of rows, if it finds common value it will be group to one.
+
+Syntax: select group-function/group by expresion
+		from table-name
+		where <condition>
+		group by expresion;
+Order of execution: 1)from
+					2)where(executes row by row)
+					3)group by
+					4)select(executes group by group)
+
+Q1)WAQTD maximum salary given to each dept. 
+Q2)WAQTD minimum salary given to each dept. 
+Q3)WAQTD maximum salary given to each job if the employee works in deptno 10 or 20. 
+Q4)WAQTD minimum salary given to each job if the employee who dont earn any commision. 
+Q5)WAQTD total salary given to each dept if the employee works as clerk. 
+Q6)WAQTD total salary given to each job. 
+Q7)WAQTD average salary given to each job, if the employee works in dept 10 or 20. 
+Q8)WAQTD no. of employees working in each dept.
+Q9)WAQTD no. of employees working in each job.
+Q10)WAQTD no. of employees working in each dept as clerk or manager.
+Q11)WAQTD no. of times the salary present.
+Q12)WAQTD no. of times the employee name is present.
+Q13)WAQTD no. of employees earning some salary in each job and also have reporting manager.
+Q14)WAQTD no. of employees working in each dept, if the name last 2nd character is R.
+Q15)WAQTD no. of employee working in each dept if the employees names ends with consonants.
