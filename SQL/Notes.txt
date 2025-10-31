@@ -82,7 +82,7 @@ syntax: select */distinct column-name expression/aliasing
         from table-name;
 order of execution: 1)from
 					2)select
-note: * selects all the column, once the column is selcted by default values get selcted.
+note: * selects all the column, once the column is selected by default values get selected.
 -If user gives the table-name which is not present in the database, then user gets an error(table/view dosen't exist,)
 -If user gives the col-name which is not present in the table, then user gets an error as invalid-identifier.
 -Query: its a request sent to database to fetch the required data.
@@ -195,7 +195,7 @@ ans- select ename,sal,sal+sal*10/100 as hike from emp;
 o/p- (14)no rows selected
 Q2)WAQTD employee name,sal and also display the salary after 20% deduction.
 ans- select ename,sal,sal-sal*20/100 as deduction from emp;
-o/p- (14)no rows selcted
+o/p- (14)no rows selected
 Q3)WAQTD employee name,sal and also display the salary after 10% hike,also display their names if and only if the hiked salary is more than 20000.
 ans- select ename,sal,sal+sal*10/100 as hike from emp where sal+sal*10/100>20000;
 o/p- no rows selected
@@ -388,7 +388,7 @@ IS NOT:
 Syntax: column-name is not null;
 
 Q1)WAQTD employee details who are earning some salary in deptno 10.
-ans- selcted * from emp 
+ans- selected * from emp 
 	 where sal is not null and deptno = 10;
 o/p- 3 rows
 Q2)WAQTD employee details who have reporting manager.
@@ -428,7 +428,7 @@ NOT IN: Used to evalute multiple values in a specific column.
 Syntax: column-name not in (value1,value2.....);
 
 Q1)WAQTD employee details, except who works in deptno 10 and 20.
-ans- selcted * from emp
+ans- selected * from emp
 	 where deptno not in(10,20);
 o/p- 6 rows
 Q2)WAQTD employee details, except clerk,manager,analyst and salesman.
@@ -861,7 +861,10 @@ Syntax: avg(arg1)
 Q1)WAQTD average salary given to all employee.
 ans- select avg(sal) from emp;
 
-Q2)WAQTD average salary given to employee thoes who works in deptno 20.
+Q2)WAQTD average salary given to employee those who works in deptno 20.
+select avg(sal) from emp
+where deptno = 20;
+
 Q3)WAQTD average salary given to manager.
 Q4)WAQTD average salary given to clerk in deptno 10.
 
@@ -873,13 +876,22 @@ Q1)WAQTD no. of employees present in the table.
 ans- select count(*) from emp;
 
 Q2)WAQTD no. of employees working as clerk.
+select count(*) from emp
+where job = 'CLERK';
+
 Q3)WAQTD no. of employees working in deptno 10.
 Q4)WAQTD no. of employees name starting with consonants.
+select count(*) from emp
+where substr(ename, 1,1) not in ('A','E','I','O','U');
+
 Q5)WAQTD no. of employees hired in 03-DEC-81.
 Q6)WAQTD no. of employees working as manager in deptno 10 or 30.
 Q7)WAQTD no. of unique salary present in the table.
 Q8)Calculate the diffrence of number of jobs with number of distinct job.
-Q9)WAQTD maximum salary, minimum salary, total salary,average salary of salesman along with number of employee working as salesman.
+Q9)WAQTD maximum salary, minimum salary, total salary, average salary of salesman along with number of employee working as salesman.
+select max(sal), min(sal), sum(sal), avg(sal), count(*) from emp
+where job = 'SALESMAN' ;
+
 Q10)WAQTD number of employees earning commision as analyst.
 
 Group By Clause:-
@@ -898,17 +910,126 @@ Order of execution: 1)from
 					4)select(executes group by group)
 
 Q1)WAQTD maximum salary given to each dept. 
+select max(sal) from emp
+group by deptno;
+
 Q2)WAQTD minimum salary given to each dept. 
 Q3)WAQTD maximum salary given to each job if the employee works in deptno 10 or 20. 
-Q4)WAQTD minimum salary given to each job if the employee who dont earn any commision. 
+select max(sal), job from emp
+where deptno in (10,20) 
+group by job;
+
+Q4)WAQTD minimum salary given to each job if the employee who dont earn any commision.
+select min(sal), job 
+from emp
+where comm is null 
+group by job;
+
 Q5)WAQTD total salary given to each dept if the employee works as clerk. 
 Q6)WAQTD total salary given to each job. 
 Q7)WAQTD average salary given to each job, if the employee works in dept 10 or 20. 
+select avg(sal), job from emp
+where deptno in (10,20) 
+group by job;
+
 Q8)WAQTD no. of employees working in each dept.
 Q9)WAQTD no. of employees working in each job.
 Q10)WAQTD no. of employees working in each dept as clerk or manager.
 Q11)WAQTD no. of times the salary present.
 Q12)WAQTD no. of times the employee name is present.
 Q13)WAQTD no. of employees earning some salary in each job and also have reporting manager.
+select count(*), job from emp
+where sal >0 and mgr is not null
+group by job;
+
 Q14)WAQTD no. of employees working in each dept, if the name last 2nd character is R.
+select count(*), deptno from emp
+where substr(ename, -2,1) = 'R'
+group by deptno;
+
 Q15)WAQTD no. of employee working in each dept if the employees names ends with consonants.
+select count(*) as total, deptno from emp
+where substr(ename, 1,1) not in ('A','E','I','O','U')
+group by deptno;
+
+# having clause:- Used to filter the groups.
+-having clause is written after the group by clause.
+-We can use having clause to write the condition based on group function/multi-row-function/aggregate function.
+Syntax: select gf/group by expresion  -->5 (group by group)
+		from table-name               -->1 
+		where <condition> 			  -->2 (row by row)
+		group by expresion 			  -->3 
+		having <condition>; 		  -->4 (group by group)
+		
+diffrence between where and having:
+1)where : It is used to filter records.
+-It executes row by row.
+-We cant use mrf() in where clause.
+-Where clause is implimented on rows.
+-We write where clause before group by clause.
+-We can use where clause without using group by group clause.
+
+2)having: It is used to filter the group.
+-It executes based on group by output(group by group).
+-We can use mrf() in having clause.
+-Having clause is executed on columns.
+-It is written after group by clause.
+-We should use having clause after group by clause, if there is no group by clause there will be no meaning for having clause.
+
+Q1)WAQTD no. of employees working in each dept display if at least 2 employee working in each dept.
+select count(*), deptno from emp
+group by deptno
+having count(*) > 4;
+	 
+Q2)WAQTD no. of employees working in each job if at least 3 employee working in each job.
+select count(*), job from emp
+group by job
+having count(*) > 3;
+	 
+Q3)WAQTD salary that are repeated.
+select sal from emp
+group by sal
+having count(*)>1;
+	 
+Q4)WAQTD employee name which is repeated.
+select ename from emp
+group by ename
+having count(*)>1;
+
+Q5)WAQTD no. of employees with dept no if employee working in each dept if there atleast 2 clerk in each dept .
+select count(*), deptno from emp
+where job = 'CLERK'
+group by deptno
+having count(*)>=2;
+	 
+Q6)WAQTD total salary neded to pay all the employees if there are atleast 4 employee in each dept.
+select sum(sal), deptno  from emp
+group by deptno
+having count(*)>4;
+
+Q7)WAQTD no. of employee earning salary more 1200 in each job and total salary neded to pay  all the employee for each job must exceed 3800.
+select count(*), job from emp
+where sal>1200 
+group by job
+having sum(sal)>3800 ;
+	 
+Q8)WAQTD deptno and no of employee working in each dept if there exactly 2 employee working in each dept as ANALYST.
+	 
+Q9)WAQTD minimum and maximum salaries of each job if minimum salary is more than 1000 and maximum salary is less than 5000.
+	 
+Q10)WAQTD average salary of each dept if average salary is less than 3000 and maximum salary exceeds 2600.
+	 
+Q11)WAQTD hiredate which are duplicated in emp table.
+select hiredate from emp
+group by hiredate
+having count(*)>1;
+
+Q12)Display the deptno and salary, if employee earn same salary in same dept.
+select deptno, sal from emp
+group by sal, deptno 
+having count(*)>1;
+
+Q13)Display the job,sal and deptno, if employee work in same job with same salary and same dept.
+select job, sal, deptno from emp
+group by job, sal, deptno
+having count(*)>1;
