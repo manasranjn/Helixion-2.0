@@ -24,8 +24,8 @@ with open('File Handling/example.txt', 'r') as file:
 #     print(content)
 #     file.write("Hello World")
 
-with open('File Handling/example.txt', 'a+') as file:
-    file.write("Hello World")
-    file.seek(0)
-    content = file.read()
-    print(content)
+# with open('File Handling/example.txt', 'a+') as file:
+#     file.write("Hello World")
+#     file.seek(0)
+#     content = file.read()
+#     print(content)

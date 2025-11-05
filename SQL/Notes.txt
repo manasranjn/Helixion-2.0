@@ -1169,3 +1169,65 @@ ans- select ename, sal, deptno
 				where ename='SCOTT') 
 		and deptno in (10,20)
 		and substr(ename, 1,1) in ('A', 'E', 'I', 'O', 'U');
+
+Q) WAQTD the details of emp whose name starts with 'A' and works in the same department as BLAKE.
+select * from emp
+where ename like 'A%' and deptno = (select deptno from emp
+									where ename = 'BLAKE');
+									
+Q)WAQTD ename, sal and designation of emp whose anual sal is more than SMITH and less than KING.
+select ename, sal, job from emp
+where (sal*12) > (select sal from emp where ename = 'SMITH')
+	and (sal*12) < (select sal from emp where ename = 'KING');
+	
+Q)WAQTD no of emp earning more than SMITH and less than MARTIN and hired after JAMES and name ends with S and also earning some commision.
+select count(*) from emp
+where sal > (select sal from emp where ename='SMITH')
+	and sal < (select sal from emp where ename = 'MARTIN')
+	and hiredate > (select hiredate from emp where ename='JAMES')
+	and ename like '%S' and comm is not null;
+	
+Case 2:-
+Q)WAQTD emp details who are working in New York.
+select * from emp
+where deptno = (select deptno from dept where loc = 'NEW YORK');
+
+Q)WAQTD dept name of emp who are working as CLERK.
+select dname from dept 
+where deptno in (select deptno from emp
+				where job = 'CLERK');
+
+Q)WAQTD dept details if the emp earning more than 2000
+select * from dept 
+where deptno in (select deptno from emp where sal>2000);
+
+Q)WAQTD dept details if the emp earning more than 2000 but less than KING
+select * from dept 
+where deptno in (select deptno from emp where sal>2000
+	and sal< (select sal from emp where ename='KING'));
+	
+Case 3:-
+select * from emp
+where sal = (select max(sal) from emp);
+
+select * from emp
+where sal = (select min(sal) from emp);
+
+Q)WAQTD 2nd maximum sal
+select max(sal) from emp
+where sal < (select max(sal) from emp);
+
+Q)WAQTD details of emp getting 3rd max sal.
+select * from emp 
+where sal = (select max(sal) from emp
+where sal < (select max(sal) from emp 
+where sal < (select max(sal) from emp)));
+
+Q) Display department details of emp if getting highest sal
+select * from dept
+where deptno = (select deptno from emp 
+where sal = (select max(sal) from emp));
+
+Q)Display details of the emp who got hired as last emp
+select * from emp
+where hiredate = (select max(hiredate) from emp);
