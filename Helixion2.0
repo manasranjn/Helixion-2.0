@@ -691,3 +691,254 @@ select ename from emp
 where empno = (select mgr from emp
 	where empno = (select mgr from emp
 	where ename = 'SMITH'));
+	
+Joins:-
+1)Inner Join/EQUI Join
+2)Outer Join
+	-Left Outer Join
+	-Right Outer Join
+	-Full Outer Join
+3)Cross Join
+4)Natural Join
+5)Self Join
+
+1)Inner Join
+Oracle-Syntax:
+select */column-name
+from table1, table2
+where join-condition;
+
+ANSI-Syntax:
+select */column-name
+from table1 inner join table 2
+on join-condition;
+
+Q)Display all details from both emp and dept table
+select * 
+from emp, dept
+where emp.deptno = dept.deptno;
+
+select * 
+from emp inner join dept
+on emp.deptno = dept.deptno;
+
+Q)Display emp name and dept name
+select ename, dname
+from emp, dept
+where emp.deptno = dept.deptno;
+
+select ename, dname
+from emp inner join dept
+on emp.deptno = dept.deptno;
+
+Q)Display ename, dname if emp name start from A
+select ename, dname
+from emp, dept
+where emp.deptno= dept.deptno and 
+	ename like 'A%';
+	
+2)Outer Join
+a)Left Outer Join
+Oracle-Syntax:
+select */column-name
+from table1, table2
+where join condition (+);
+
+ANSI-Syntax:
+select */column-name
+from table1 left outer join table2
+on join-condition;
+
+Q)Display ename and their dname and also display the empname if emp not working in any dept.
+select ename, dname 
+from emp, dept
+where emp.deptno = dept.deptno (+);
+
+select ename, dname 
+from emp left outer join dept
+on emp.deptno = dept.deptno;
+
+b)Right Outer Join
+Oracle-Syntax:
+select */column-name
+from table1, table2
+where (+) join-condition;
+
+ANSI-Syntax:
+select */column-name
+from table1 right outer join table2
+on join-condition;
+
+Q)Display ename and their dname also display the deptname if no emp is working in that dept.
+select ename, dname 
+from emp, dept
+where emp.deptno(+) = dept.deptno;
+
+select ename, dname 
+from emp right outer join dept
+on emp.deptno = dept.deptno;
+
+c)Full Outer Join
+ANSI-Syntax:
+select */column-name
+from table1 full outer join table2
+on join-condition;
+
+Q)Display ename, dname also display the ename if emp don't work in any dept also include deptname if no emp is working in the dept.
+select ename, dname
+from emp full outer join dept
+on emp.deptno=dept.deptno;
+
+3)Cross Join
+Oracle-Syntax:
+select */column-name
+from table1, table2, table3...;
+
+ANSI-Syntax:
+select */column-name
+from table1 cross join table2 cross join table3.....;
+
+Q)Display ename and dname for each table.
+select ename, dname 
+from emp, dept;
+
+select ename, dname
+from emp cross join dept;
+
+Q)Display ename, dname, hisal for each table
+select ename, dname, hisal
+from emp, dept, salgrade;
+
+select ename, dname, hisal
+from emp cross join dept cross join salgrade;
+
+4)Natural Join
+ANSI-Syntax:
+select */column-name 
+from table1 natural join table2 natural join table3..;
+
+ex: select ename, dname 
+	from emp natural join dept;
+	
+ex: select ename, hisal
+	from emp natural join salgrade;
+	
+5) Self Join
+Oracle-Syntax:
+select */column-name
+from table1, table2
+where join-condition;
+
+ANSI-Syntax:
+select */column-name
+from table1 join table2
+on join-condition;
+
+Q)Display emp name and his manages name.
+select e.ename, m.ename
+from emp e, emp m
+where e.mgr = m.empno;
+
+Q)Display ename and his manager name and his manager name.
+select e.ename, m1.ename, m2.ename
+from emp e, emp m1, emp m2
+where e.mgr = m1.empno and
+m1.mgr = m2.empno;
+
+Set Operators:
+Union-
+select ename from emp
+union
+select dname from dept;
+
+select ename from emp
+union
+select job from emp;
+
+Union all-
+select ename from emp
+union all
+select job from emp;
+
+select mgr from emp
+union all
+select deptno from dept;
+
+Intersect-
+select ename from emp
+intersect
+select dname from dept;
+
+select deptno from emp
+intersect
+select deptno from dept;
+
+select empno from emp
+intersect
+select mgr from emp;
+
+Minus-
+select empno from emp
+minus
+select mgr from emp;
+
+select deptno from emp
+minus
+select deptno from dept;
+
+select ename from emp
+minus
+select dname from dept;
+
+Co-related Subquery:-
+Q) WAQTD dname where employee are working.
+select d.dname from dept d
+where d.deptno in (select e.deptno from emp e
+	where d.deptno = e.deptno);
+	
+Q) WAQTD dname where employee are not working.
+select d.dname from dept d
+where d.deptno not in (select e.deptno from emp e
+	where d.deptno = e.deptno);
+	
+Q)Find the 2nd maximum sal
+select e1.sal from emp e1
+where 1 = (select count(distinct e2.sal) from emp e2
+	where e1.sal < e2.sal);
+	
+Case Expression:
+select col
+case 
+	when condition1 then value
+	when condition2 then value
+	when condition3 then value
+	else value
+end
+from table_name;
+
+select ename, sal,
+case 
+	when sal > 2000 then 'Earning good salary'
+	else 'Less salary'
+end as stmnt
+from emp;
+
+select ename, sal,
+case 
+	when sal >= 3000 then 'Earning good salary'
+	when sal >= 2000 then 'Salary is ok'
+	when sal >= 1000 then 'Less salary'
+	else 'Chillar'
+end as statement
+from emp;
+
+
+create table example (
+	empId int primary key,
+	ename varchar2(20),
+	age int check (age>=18),
+	mail varchar2(20) unique,
+	status varchar2(10) default 'Active');
+	
+insert into example values(1, 'Saurbh', 22, 'saurav@gmail.com', 'Inactive');
+insert into example values(2, 'Sumit', 19, 'sumit@gmail.com', '');
