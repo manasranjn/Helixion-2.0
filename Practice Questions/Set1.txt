@@ -6,3 +6,15 @@
 6. Multiply two matrices using NumPy.
 7. Stack two arrays vertically and horizontally.
 8. Create an array of zeros only.
+9. Create a NumPy array of all ones (1s) with shape 4x4.
+10. Find the maximum, minimum, and standard deviation of a NumPy array.
+11. Flatten a 2D array into a 1D array.
+12. Create a Pandas DataFrame using a dictionary containing student names, marks, and ages.
+13. Display the first 5 and last 3 rows of a DataFrame using head() and tail().
+14. Get the shape (rows, columns) of a DataFrame.
+15. Display the columns, index, and data types of a DataFrame.
+16. Access a specific column and multiple columns from a DataFrame.
+17. Create a DataFrame with some missing (NaN) values, and replace missing values using fillna() with a constant value.
+18. Drop rows with any missing values using dropna().
+19. Drop rows where all values are NaN using how.
+20. Drop rows where less than 3 non-null values. 

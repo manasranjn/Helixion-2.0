@@ -1,12 +1,13 @@
-file = open('File Handling/example.txt', 'r')
-content = file.read()
-print(content)
+# file = open('example.txt', 'r')
+# print(file.read())
+# content = file.read()
+# print(content)
 
-file.close()
+# file.close()
 
-with open('File Handling/example.txt', 'r') as file:
-    content = file.readline()
-    # print(content)
+# with open('example.txt', 'r') as f:
+#     content = f.readline(20)
+#     print(content)
 
 # with open('File Handling/exam.txt', 'w') as files:
 #     files.write("Hello World")
@@ -14,18 +15,18 @@ with open('File Handling/example.txt', 'r') as file:
 # with open('File Handling/example.txt', 'a') as files:
 #     files.write("Hello World")
 
-# with open('File Handling/example.txt', 'r+') as file:
+# with open('Python\File Handling\example.txt', 'r+') as file:
 #     content = file.read()
 #     print(content)
 #     file.write("Hello World")
 
-# with open('File Handling/example.txt', 'w+') as file:
+# with open('Python\File Handling\example.txt', 'w+') as file:
 #     content = file.read()
 #     print(content)
 #     file.write("Hello World")
 
-# with open('File Handling/example.txt', 'a+') as file:
-#     file.write("Hello World")
-#     file.seek(0)
-#     content = file.read()
-#     print(content)
+with open('Python\File Handling\example.txt', 'a+') as file:
+    file.write("Hello World")
+    file.seek(10)
+    content = file.read()
+    print(content)

@@ -188,9 +188,9 @@ Data:-
 Database:- 
 
 C: Create- insert
-R: Read- Select
-U: Update- Update
-D: Delete- Drop/delete
+R: Read- select
+U: Update- update
+D: Delete- drop/delete
 
 DBMS:- (Database Management System)
 
@@ -201,44 +201,47 @@ RDBMS- Relational DBMS
 
 RDBMS:-
 E.F. Codd
-E.g:- Oracle, MySQL,MS Access, MS SQL Server, etc...
+e.g:- Oracle, MySQL, MS Access, MS SQL Server, maria DB, sybase, etc...
 
 SQL:- (Structure Query Language)
 -Sequel
 -Donald Chamberlin and Raymond Bayce 
 
-Note:-  
+1.show:-
+e.g:- show pages -> 14
+	show lines -> 80
+	show pages lines
+	
+- show user ->scott
 
-varchar2(200)
-char(100)
-number(10) number(10,2)
-a = 10.11
+2. set:- 
+e.g:- set lines 200
+	set pages 200
+	set lines 200 pages 200
+	
+3. cl scr:-
+4. desc:- 
+e.g:-  desc table_name
+	describe table_name
+	
+5. ed:- /
 
-dd-mon-yy
-dd-mon-yyyy
+Types:-
+char
+varchar/varchar2
+number
+date
+large objects
+	-clob(Character Large Object)
+	-blob(Binary Large Object)
 
-
-ex:-  show pages; //14
-	show linesize; //80
-	show pages linesize;
-	
-	set pages 200 linesize 200;
-	
-	cl scr
-	
-	desc table_name;
-	or
-	describe table_name;
-	
-	ed
-	
 1) char:-
 [A-Z][a-z][0-9] and (!, @, &, $, ₹)
 Syntax:- colName char(size)
 e.g:- Name char(20)
 
 2) varchar & varchar2:-
-Syntax:- name varchar2(size)
+Syntax:- name varchar2(200)
 
 3) number:-
 Syntax:- name number
@@ -257,10 +260,10 @@ e.g:- 101.10 (5,2)
  dd-mon-yy -> 15-Oct-25
  dd-mon-yyyy -> 15-Oct-2025
  
-Syntax:- name date
+Syntax:- hiredate date
 timestamp
 
-5) Long Objects
+5) Large Objects
 	i)- clob(Charecter Large Object)
 	ii)- blob(Binary Large Object)
 	
@@ -269,19 +272,50 @@ ALTER USER scott ACCOUNT UNLOCK IDENTIFIED BY tiger;
 Sid Name Age Mark Address RegNo
 
 
+1.not null
+2.unique
+3.Primary key
+4.FOREIGN key
+5.check
+6.default
+
+Statements/Commands/Languages:-
+1.DDL(Data Defination Language)
+2.DML(Data Manipulation Language)
+3.TCL(Transaction Control Language)
+4.DCL(Data Control Language)
+5.DQL(Data Query Language)
+
+UN- sys as sysdba
+Pass- tiger
+
+Create User:- create user user_name identified by password;
+e.g:- create user user1 identified by hello;
+
+Select users:- select * from all_users;
+
+grant resource, connect to user_name;
+e.g: grant resource, connect to user1;
 
 
 Create a table-
 Syntax:-
 create table table-name (col1 data-type constraints,
 					col2 data-type constraints,...)
+					
+e.g: CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    age INT check (age>20),
+    city VARCHAR(50)
+);
 						
 Insert data into a table-
 Syntax:- 
 1)insert into table-name(val1, val1, val3....)
 2)insert into table-name(col1, col2..) values (val1,val2...)
 
-
+e.g: INSERT INTO students VALUES (2, 'Pranab', 21, 'Bhubaneswar');
 
 CREATE TABLE students (
     student_id INT PRIMARY KEY,
@@ -305,9 +339,9 @@ CREATE TABLE enrollments (
     FOREIGN KEY (course_id) REFERENCES courses(course_id)
 );
 
-INSERT INTO students VALUES (1, 'Manas', 22, 'Bhubaneswar');
-INSERT INTO students VALUES (2, 'Riya', 21, 'Cuttack');
-INSERT INTO students VALUES (3, 'Amit', 23, 'Puri');
+INSERT INTO students VALUES (3, 'Manas', 22, 'Bhubaneswar');
+INSERT INTO students VALUES (4, 'Riya', 21, 'Cuttack');
+INSERT INTO students VALUES (5, 'Amit', 23, 'Puri');
 
 INSERT INTO courses VALUES (101, 'HTML', 'Mr. Sharma');
 INSERT INTO courses VALUES (102, 'JavaScript', 'Ms. Gupta');
@@ -416,10 +450,10 @@ select concat('Hi ', ename) from emp;
 2)WAQTD 'Hi' before all the emp names along with display "Your Designation is", for everyone's designation.
 select concat(concat(concat('Hi ', ename), ' Your Designation is '), job) from emp;
 3)WAQTD 'Hey' before emp name along with 'Your salary is ' for salary and 'Your department is ' for department.
-select concat(concat(concat(concat(concat('Hey ', ename), ' Your salary is '), sal), ' Your Department nu is '), deptno) from emp;
+select concat(concat(concat(concat(concat('Hey ', ename), ' Your salary is '), sal), ' Your Department number is '), deptno) from emp;
 
 4)WAQTD 'Hey' brfore emp name and also display 'Your salary hiked upto 10%, salary must be displayed.
-select 'Hey ' || ename || ' Your salary hiked upto 10% ' || (sal+(sal+10/100)) as Salary from emp;
+ans- select 'Hey ' || ename || ' Your salary hiked upto 10% ' || (sal+(sal+10/100)) as Salary from emp;
 
 reverse():-
 select reverse(ename) from emp;
@@ -429,8 +463,9 @@ select length(ename) from emp;
 1) WAQTD enames and number of characters present in their name for ALLEN and WARD.
 select ename, length(ename) from emp
 where ename in ('ALLEN', 'WARD');
+
 2)WAQTD enames for those who have 5 or 6 characters in their names.
-select ename from emp
+select ename, length(ename) as length from emp
 where length(ename) in (5,6);
 
 trim(leading/trailing/both):-
@@ -440,10 +475,10 @@ trim(leading/trailing/both):-
 
 replace(str, searchValue, replaceValue):- 
 1) WAQTD ename, if emp name contains character 'R' replace with 'D'.
-select replace(ename, 'R', 'D') from emp;
+select ename, replace(ename, 'R', 'D') from emp;
 
 2) WAQTD the no of character 'A' present in emp name.
-select length(ename) - length(replace(ename, 'A')) from emp;
+select ename, length(ename) - length(replace(ename, 'A')) from emp;
 
 3) WAQTD emp name also remove the character 'A' from all the ename in dept 10 and 20.
 select ename, replace(ename, 'A') from emp
@@ -453,7 +488,11 @@ translate():-
 1) select translate('Bhubaneswar', 'B', 'Z') from dual;
 2) select translate('Bhubaneswar', 'B', ' ') from dual;
 3) select translate('Bhubaneswar', 'Bhu', 'Z') from dual;
-4)select translate('BhuBaneswar', 'B', 'Z') from dual;
+4) select translate('BhuBaneswar', 'B', 'Z') from dual;
+
+
+Q)WAQTD only consonants from emp name.
+ans- select ename, replace(replace(replace(replace(replace(ename, 'A'),'E'),'I'),'O'),'U') from emp;
 
 substr():- 
 substr(mainString, starting Index, nos of characters)

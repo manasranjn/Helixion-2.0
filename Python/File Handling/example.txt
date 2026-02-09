@@ -2,4 +2,4 @@
 2. Write a program that prints the sum of all numbers from 1 to 50 using a for loop.
 3. Use a for loop to print the multiplication table of 5.
 4. Given a list of integers [2, 4, 6, 8, 10] loop to print each number squared.
-5. Write a program using a for loop to print all even numbers between 1 and 20.Hello WorldHello WorldHello WorldHello World
+5. Write a program using a for loop to print all even numbers between 1 and 20.Hello WorldHello World
